@@ -5,6 +5,7 @@ import java.awt.Graphics2D;
 import java.awt.Point;
 
 import com.nwollmann.jgame.graphics.GameRenderer;
+import com.nwollmann.jgame.physics.Collider;
 
 /**
  * This is the base class for all objects registered with the Game Manager.
@@ -21,6 +22,7 @@ public class GameObject {
 	protected boolean collidable;
 	protected boolean visible;
 	protected boolean deleteFlag;
+	protected Collider collider;
 	
 	/**
 	 * Creates a game object. By default it is not visible, has no renderer, and is not collidable.
@@ -139,7 +141,7 @@ public class GameObject {
 	 * @return Size in pixels
 	 */
 	public final Dimension getSize(){
-		return size;
+		return (Dimension)size.clone();
 	}
 	
 	/**
