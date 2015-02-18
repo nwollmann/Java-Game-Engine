@@ -6,8 +6,6 @@ import java.awt.Font;
 import java.awt.Graphics2D;
 
 public class TextRenderer implements GameRenderer{
-	
-	private Font font;
 
 	public void renderText(int x, int y, Dimension size, String string, Graphics2D graphics){
 		graphics.setColor(Color.GRAY);

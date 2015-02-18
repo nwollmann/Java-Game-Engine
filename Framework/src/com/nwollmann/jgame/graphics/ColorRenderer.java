@@ -2,10 +2,7 @@ package com.nwollmann.jgame.graphics;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Graphics;
 import java.awt.Graphics2D;
-
-import com.nwollmann.jgame.GameManager;
 
 public class ColorRenderer implements GameRenderer{
 	

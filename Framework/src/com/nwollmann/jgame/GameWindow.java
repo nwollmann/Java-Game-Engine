@@ -4,13 +4,16 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 
 import javax.swing.JFrame;
 
 import com.nwollmann.jgame.graphics.GamePanel;
 
 public class GameWindow extends JFrame{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6551087290671448647L;
 	private GamePanel panel;
 	private KeyLis listener;
 	

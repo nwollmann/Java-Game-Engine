@@ -2,9 +2,12 @@ package com.nwollmann.jgame.physics;
 
 import java.awt.Point;
 
+import com.nwollmann.jgame.GameObject;
+
 public class Collider {
 	protected boolean positionBound;
 	protected Point position;
+	protected GameObject parent;
 	
 	public Collider(){
 		positionBound = true;
@@ -19,6 +22,14 @@ public class Collider {
 	public Collider(int x, int y, boolean positionBound){
 		this.positionBound = positionBound;
 		position = new Point(x, y);
+	}
+	
+	public void setParent(GameObject parent){
+		this.parent = parent;
+	}
+	
+	public GameObject getParent(){
+		return parent;
 	}
 	
 	public boolean isPositionBound(){

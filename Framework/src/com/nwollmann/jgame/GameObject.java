@@ -22,6 +22,7 @@ public class GameObject {
 	protected boolean collidable;
 	protected boolean visible;
 	protected boolean deleteFlag;
+	protected boolean collideFlag;
 	protected Collider collider;
 	
 	/**
@@ -43,7 +44,8 @@ public class GameObject {
 	public final void setPosition(int x, int y){
 		posX = x;
 		posY = y;
-		if(collidable) GameManager.getInstance().collisionCheck(this);
+		if(collider.isPositionBound()) collider.setPosition(x, y, true);
+		if(collidable) collideFlag = true;
 	}
 	
 	/**
@@ -53,7 +55,8 @@ public class GameObject {
 	 */
 	public final void setPositionX(int x){
 		posX = x;
-		if(collidable) GameManager.getInstance().collisionCheck(this);
+		if(collider.isPositionBound()) collider.setPositionX(x, true);
+		if(collidable) collideFlag = true;
 	}
 	
 	/**
@@ -63,7 +66,8 @@ public class GameObject {
 	 */
 	public final void setPositionY(int y){
 		posY = y;
-		if(collidable) GameManager.getInstance().collisionCheck(this);
+		if(collider.isPositionBound()) collider.setPositionY(y, true);
+		if(collidable) collideFlag = true;
 	}
 	
 	/**
@@ -83,7 +87,8 @@ public class GameObject {
 	public final void translate(int x, int y){
 		posX += x;
 		posY += y;
-		if(collidable) GameManager.getInstance().collisionCheck(this);
+		if(collider.isPositionBound()) collider.setPosition(posX, posY);
+		if(collidable) collideFlag = true;
 	}
 	
 	/**
@@ -93,7 +98,8 @@ public class GameObject {
 	 */
 	public final void translateX(int x){
 		posX += x;
-		if(collidable) GameManager.getInstance().collisionCheck(this);
+		if(collider.isPositionBound()) collider.setPositionX(posX, true);
+		if(collidable) collideFlag = true;
 	}
 	
 	/**
@@ -103,7 +109,8 @@ public class GameObject {
 	 */
 	public final void translateY(int y){
 		posY += y;
-		if(collidable) GameManager.getInstance().collisionCheck(this);
+		if(collider.isPositionBound()) collider.setPositionY(posY, true);
+		if(collidable) collideFlag = true;
 	}
 	
 	/**
@@ -113,7 +120,7 @@ public class GameObject {
 	 */
 	public final void setSize(Dimension size){
 		this.size = size;
-		if(collidable) GameManager.getInstance().collisionCheck(this);
+		if(collidable) collideFlag = true;
 	}
 	
 	/**
@@ -123,7 +130,7 @@ public class GameObject {
 	 */
 	public final void setWidth(int width){
 		size.width = width;
-		if(collidable) GameManager.getInstance().collisionCheck(this);
+		if(collidable) collideFlag = true;
 	}
 	
 	/**
@@ -133,7 +140,7 @@ public class GameObject {
 	 */
 	public final void setHeight(int height){
 		size.height = height;
-		if(collidable) GameManager.getInstance().collisionCheck(this);
+		if(collidable) collideFlag = true;
 	}
 	
 	/**
@@ -215,6 +222,14 @@ public class GameObject {
 		return deleteFlag;
 	}
 	
+	public void deflagForCollision(){
+		collideFlag = false;
+	}
+	
+	public boolean isFlaggedForCollision(){
+		return collideFlag;
+	}
+	
 	/**
 	 * Sets the renderer to be used when drawing this game object.
 	 * @param renderer Renderer to draw this game object
@@ -238,6 +253,15 @@ public class GameObject {
 	public void draw(Graphics2D graphics){
 		renderer.render(posX, posY, size, graphics);
 		
+	}
+	
+	public void setCollider(Collider collider){
+		if(collider.isPositionBound()) collider.setPosition(getPosition(), true);
+		this.collider = collider;
+	}
+	
+	public Collider getCollider(){
+		return collider;
 	}
 	
 	/**

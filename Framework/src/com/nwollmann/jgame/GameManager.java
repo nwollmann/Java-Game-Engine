@@ -1,6 +1,5 @@
 package com.nwollmann.jgame;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.Point;
@@ -10,7 +9,6 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Iterator;
 
-import com.nwollmann.jgame.graphics.ColorRenderer;
 
 /**
  * This class acts as the primary controller for the game engine. 
@@ -25,10 +23,10 @@ public class GameManager {
 	private boolean gameRunning;
 	private static GameManager instance;
 	private GameThread thread;
-	private int frame;
 	private int updateDelay;
-	private int loopDelay;
 	private GameWindow window;
+	
+	private boolean debugMode;
 	
 	/**
 	 * Creates a new GameManager with no game objects or automatic game events.
@@ -52,6 +50,10 @@ public class GameManager {
 	 */
 	public static GameManager getInstance(){
 		return instance;
+	}
+	
+	public boolean isDebug(){
+		return debugMode;
 	}
 	
 	/**
