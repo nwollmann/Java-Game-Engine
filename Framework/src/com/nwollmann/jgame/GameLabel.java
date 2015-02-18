@@ -1,9 +1,15 @@
+
 package com.nwollmann.jgame;
 
 import java.awt.Graphics2D;
 
 import com.nwollmann.jgame.graphics.TextRenderer;
 
+/**
+ * 
+ * @author Nicholas Wollmann
+ *
+ */
 public class GameLabel extends GameObject{
 	private String text;
 	private TextRenderer renderer;
