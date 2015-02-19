@@ -6,7 +6,7 @@ import java.awt.Graphics2D;
 import com.nwollmann.jgame.graphics.TextRenderer;
 
 /**
- * 
+ * Displays text on the screen. 
  * @author Nicholas Wollmann
  *
  */
@@ -14,6 +14,9 @@ public class GameLabel extends GameObject{
 	private String text;
 	private TextRenderer renderer;
 	
+	/**
+	 * 
+	 */
 	public GameLabel(){
 		text = "";
 		renderer = new TextRenderer();
