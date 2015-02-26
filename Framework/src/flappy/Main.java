@@ -12,7 +12,7 @@ public class Main {
 	public static GameLabel label;
 	
 	public static void main(String[] args){
-		GameManager gm = new GameManager();
+		GameManager gm = GameManager.getInstance();
 		Player player = new Player();
 		player.setVisible(true);
 		player.setRenderer(new ColorRenderer(Color.red));

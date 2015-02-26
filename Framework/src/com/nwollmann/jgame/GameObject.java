@@ -33,6 +33,8 @@ public class GameObject {
 		collidable = false;
 		visible = false;
 		size = new Dimension(100, 100);
+		collider = new Collider();
+		collider.setParent(this);
 	}
 	
 	/**
@@ -121,6 +123,7 @@ public class GameObject {
 	public final void setSize(Dimension size){
 		this.size = size;
 		if(collidable) collideFlag = true;
+		if(collider.isSizeBound()) collider.updateSize(size, true);
 	}
 	
 	/**
@@ -131,6 +134,7 @@ public class GameObject {
 	public final void setWidth(int width){
 		size.width = width;
 		if(collidable) collideFlag = true;
+		if(collider.isSizeBound()) collider.updateSize(size, true);
 	}
 	
 	/**
@@ -141,6 +145,7 @@ public class GameObject {
 	public final void setHeight(int height){
 		size.height = height;
 		if(collidable) collideFlag = true;
+		if(collider.isSizeBound()) collider.updateSize(size, true);
 	}
 	
 	/**
@@ -256,7 +261,11 @@ public class GameObject {
 	}
 	
 	public void setCollider(Collider collider){
-		if(collider.isPositionBound()) collider.setPosition(getPosition(), true);
+		if(collider.isPositionBound()){
+			collider.setPosition(getPosition(), true);
+			collider.updateSize(size, true);
+		}
+		collider.setParent(this);
 		this.collider = collider;
 	}
 	

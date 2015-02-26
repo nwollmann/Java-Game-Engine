@@ -1,59 +1,51 @@
 package com.nwollmann.jgame.physics;
 
 import java.awt.Dimension;
+import java.awt.Rectangle;
 
 public class RectangularCollider extends Collider{
-	protected boolean isSizeBound;
 	protected Dimension size;
 	
 	public RectangularCollider(){
 		super();
-		isSizeBound = true;
+		sizeBound = true;
 		size = new Dimension();
 	}
 	
 	public RectangularCollider(int x, int y, int width, int height){
 		super(x, y, true);
-		isSizeBound = true;
+		sizeBound = true;
 		size = new Dimension(width, height);
 	}
 	
 	public RectangularCollider(int x, int y, Dimension size){
 		super(x, y, true);
-		isSizeBound = true;
+		sizeBound = true;
 		this.size = (Dimension)size.clone();
 	}
 	
 	public RectangularCollider(int x, int y, int width, int height, boolean isBound){
 		super(x, y, isBound);
-		isSizeBound = isBound;
+		sizeBound = isBound;
 		size = new Dimension(width, height);
 	}
 	
 	public RectangularCollider(int x, int y, Dimension size, boolean isBound){
 		super(x, y, isBound);
-		isSizeBound = isBound;
+		sizeBound = isBound;
 		this.size = (Dimension)size.clone();
 	}
 	
-	public RectangularCollider(int x, int y, int width, int height, boolean isPositionBound, boolean isSizeBound){
+	public RectangularCollider(int x, int y, int width, int height, boolean isPositionBound, boolean sizeBound){
 		super(x, y, isPositionBound);
-		this.isSizeBound = isSizeBound;
+		this.sizeBound = sizeBound;
 		size = new Dimension(width, height);
 	}
 	
-	public RectangularCollider(int x, int y, Dimension size, boolean isPositionBound, boolean isSizeBound){
+	public RectangularCollider(int x, int y, Dimension size, boolean isPositionBound, boolean sizeBound){
 		super(x, y, isPositionBound);
-		this.isSizeBound = isSizeBound;
+		this.sizeBound = sizeBound;
 		this.size = (Dimension)size.clone();
-	}
-	
-	public boolean isSizeBound(){
-		return isSizeBound;
-	}
-	
-	public void setSizeBound(boolean isSizeBound){
-		this.isSizeBound = isSizeBound;
 	}
 	
 	public Dimension getSize(){
@@ -62,12 +54,12 @@ public class RectangularCollider extends Collider{
 	
 	public void setSize(Dimension size){
 		this.size = (Dimension)size.clone();
-		isSizeBound = false;
+		sizeBound = false;
 	}
 	
-	public void setSize(Dimension size, boolean isSizeBound){
+	public void setSize(Dimension size, boolean sizeBound){
 		this.size = (Dimension)size.clone();
-		this.isSizeBound = isSizeBound;
+		this.sizeBound = sizeBound;
 	}
 	
 	public int getWidth(){
@@ -76,11 +68,11 @@ public class RectangularCollider extends Collider{
 	
 	public void setWidth(int width){
 		size.width = width;
-		isSizeBound = false;
+		sizeBound = false;
 	}
 	
 	public void setWidth(int width, boolean isBound){
-		isSizeBound = isBound;
+		sizeBound = isBound;
 	}
 	
 	public int getHeight(){
@@ -89,12 +81,39 @@ public class RectangularCollider extends Collider{
 	
 	public void setHeight(int height){
 		size.height = height;
-		isSizeBound = false;
+		sizeBound = false;
 	}
 	
 	public void setHeight(int height, boolean isBound){
 		size.height = height;
-		isSizeBound = isBound;
+		sizeBound = isBound;
+	}
+	
+	public Rectangle getBounds(){
+		return new Rectangle(position.x - size.width/2, position.y - size.height/2, size.width, size.height);
+	}
+	
+	@Override
+	public void updateSize(Dimension size){
+		this.size = size;
+	}
+	
+	@Override
+	public void updateSize(Dimension size, boolean bound){
+		this.size = size;
+		sizeBound = bound;
+	}
+	
+	@Override
+	public void updateSize(int width, int height){
+		size = new Dimension(width, height);
+		sizeBound = false;
+	}
+	
+	@Override
+	public void updateSize(int width, int height, boolean bound){
+		size = new Dimension(width, height);
+		sizeBound = bound;
 	}
 	
 }

@@ -1,11 +1,13 @@
 package com.nwollmann.jgame.physics;
 
+import java.awt.Dimension;
 import java.awt.Point;
 
 import com.nwollmann.jgame.GameObject;
 
 public class Collider {
 	protected boolean positionBound;
+	protected boolean sizeBound;
 	protected Point position;
 	protected GameObject parent;
 	
@@ -92,5 +94,29 @@ public class Collider {
 	public void setPositionY(int y, boolean positionBound){
 		this.positionBound = positionBound;
 		position.y = y;
+	}
+	
+	public boolean isSizeBound(){
+		return sizeBound;
+	}
+	
+	public void setSizeBound(boolean sizeBound){
+		this.sizeBound = sizeBound;
+	}
+	
+	public void updateSize(Dimension size){
+		sizeBound = false;
+	}
+	
+	public void updateSize(Dimension size, boolean bound){
+		sizeBound = bound;
+	}
+	
+	public void updateSize(int width, int height){
+		sizeBound = false;
+	}
+	
+	public void updateSize(int width, int height, boolean bound){
+		sizeBound = bound;
 	}
 }

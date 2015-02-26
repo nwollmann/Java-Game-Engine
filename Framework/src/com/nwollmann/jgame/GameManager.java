@@ -1,13 +1,12 @@
 package com.nwollmann.jgame;
 
-import java.awt.Dimension;
 import java.awt.Graphics2D;
-import java.awt.Point;
-import java.awt.Rectangle;
 import java.awt.image.BufferStrategy;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Iterator;
+
+import com.nwollmann.jgame.physics.CollisionManager;
 
 
 /**
@@ -25,6 +24,7 @@ public class GameManager {
 	private GameThread thread;
 	private int updateDelay;
 	private GameWindow window;
+	private CollisionManager collisionManager;
 	
 	private boolean debugMode;
 	
@@ -33,7 +33,7 @@ public class GameManager {
 	 * It also sets the static 'instance' variable to the object created. This
 	 * constructor does not start the game loop.
 	 */
-	public GameManager(){
+	private GameManager(){
 		objects = new ArrayList<GameObject>();
 		events = new ArrayList<AutomaticGameEvent>();
 		inputListeners = new ArrayList<GameInput>();
@@ -41,6 +41,7 @@ public class GameManager {
 		instance = this;
 		window = new GameWindow();
 		updateDelay = 50;
+		collisionManager = new CollisionManager();
 		//runGame();
 	}
 	
@@ -49,7 +50,14 @@ public class GameManager {
 	 * @return Most recently created Game Manager object.
 	 */
 	public static GameManager getInstance(){
+		if(instance == null) instance = new GameManager();
 		return instance;
+	}
+	
+	public void setDebug(boolean debug){
+		debugMode = debug;
+		if(debug) System.out.println("Engine is now in debug mode");
+		else System.out.println("Engine is no longer in debug mode");
 	}
 	
 	public boolean isDebug(){
@@ -164,7 +172,7 @@ public class GameManager {
 	 */
 	public void collisionCheck(GameObject object1){
 		if(!object1.collidable) return;
-		Point pos1 = object1.getPosition();
+		/*Point pos1 = object1.getPosition();
 		Dimension dim1 = object1.getSize();
 		Rectangle rect1 = new Rectangle(pos1.x, pos1.y, dim1.width, dim1.height);
 		Point pos2;
@@ -180,7 +188,19 @@ public class GameManager {
 					object2.onCollision(object1);
 				}
 			}
+		}*/
+		for(GameObject object2 : objects){
+			if(object2 != object1 && object2.collidable)
+				collisionManager.collisionCheck(object1, object2);
 		}
+	}
+	
+	public void setCollisionManager(CollisionManager collisionManager){
+		this.collisionManager = collisionManager;
+	}
+	
+	public CollisionManager getCollisionManager(){
+		return collisionManager;
 	}
 	
 	//a lot of work to be done here
