@@ -1,5 +1,10 @@
 package com.nwollmann.jgame.exceptions;
 
+/**
+ * Exception thrown by an issue with the collision system.
+ * @author Nicholas Wollmann
+ *
+ */
 public class CollisionException extends GameException{
 
 	/**
