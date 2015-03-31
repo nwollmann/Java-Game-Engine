@@ -1,4 +1,4 @@
-package com.nwollmann.jgame;
+package com.nwollmann.jgame.input;
 
 /**
  * This interface is used to register listeners to the GameManager.

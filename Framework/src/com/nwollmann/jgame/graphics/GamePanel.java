@@ -2,6 +2,11 @@ package com.nwollmann.jgame.graphics;
 
 import javax.swing.JPanel;
 
+/**
+ * Not currently doing anything. Functionality will probably be added at some point in the future.
+ * @author Nicholas Wollmann
+ *
+ */
 public class GamePanel extends JPanel{
 
 	/**

@@ -1,3 +1,7 @@
 com.nwollmann.jgame
+com.nwollmann.jgame.exceptions
 com.nwollmann.jgame.graphics
+com.nwollmann.jgame.input
 com.nwollmann.jgame.physics
+com.nwollmann.jgame.test
+com.nwollmann.jgame.util

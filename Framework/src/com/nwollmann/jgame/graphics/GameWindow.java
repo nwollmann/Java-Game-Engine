@@ -1,4 +1,4 @@
-package com.nwollmann.jgame;
+package com.nwollmann.jgame.graphics;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -7,16 +7,22 @@ import java.awt.event.KeyEvent;
 
 import javax.swing.JFrame;
 
-import com.nwollmann.jgame.graphics.GamePanel;
+import com.nwollmann.jgame.GameManager;
 
+/**
+ * A window that the game renders into.
+ * @author Nicholas Wollmann
+ *
+ */
 public class GameWindow extends JFrame{
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 6551087290671448647L;
 	private GamePanel panel;
 	private KeyLis listener;
 	
+	/**
+	 * Default constructor, sets up standard stuff.
+	 */
 	public GameWindow(){
 		super();
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -34,10 +40,17 @@ public class GameWindow extends JFrame{
 		add(panel);
 	}
 	
+	/**
+	 * Returns the game panel of this window.
+	 */
 	public GamePanel getGamePanel(){
 		return panel;
 	}
 	
+	/**
+	 * A key listener.
+	 * @author Nicholas Wollmann
+	 */
 	private class KeyLis extends KeyAdapter{
 		@Override
 		public void keyPressed(KeyEvent e){

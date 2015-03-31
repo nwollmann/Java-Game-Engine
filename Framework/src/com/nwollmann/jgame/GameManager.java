@@ -1,12 +1,13 @@
 package com.nwollmann.jgame;
 
-import java.awt.Graphics2D;
-import java.awt.image.BufferStrategy;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Iterator;
 
+import com.nwollmann.jgame.graphics.GraphicsManager;
+import com.nwollmann.jgame.input.GameInput;
 import com.nwollmann.jgame.physics.CollisionManager;
+import com.nwollmann.jgame.util.GameObject;
 
 
 /**
@@ -18,13 +19,13 @@ public class GameManager {
 
 	private ArrayList<GameObject> objects;
 	private ArrayList<AutomaticGameEvent> events;
-	private ArrayList<GameInput> inputListeners;
+	private ArrayList<GameInput> inputListeners; //move out to InputManager
 	private boolean gameRunning;
 	private static GameManager instance;
 	private GameThread thread;
 	private int updateDelay;
-	private GameWindow window;
 	private CollisionManager collisionManager;
+	private GraphicsManager graphicsManager;
 	
 	private boolean debugMode;
 	
@@ -39,10 +40,9 @@ public class GameManager {
 		inputListeners = new ArrayList<GameInput>();
 		gameRunning = true;	
 		instance = this;
-		window = new GameWindow();
 		updateDelay = 50;
 		collisionManager = new CollisionManager();
-		//runGame();
+		graphicsManager = new GraphicsManager();
 	}
 	
 	/**
@@ -74,10 +74,6 @@ public class GameManager {
 	
 	public void haltGame(){
 		gameRunning = false;
-	}
-	
-	public GameWindow getGameWindow(){
-		return window;
 	}
 	
 	public void registerKeyPressed(int keyID){
@@ -114,19 +110,8 @@ public class GameManager {
 				lag -= updateDelay;
 			}
 			
-			BufferStrategy bs = window.getBufferStrategy();
-			Graphics2D graphics = (Graphics2D) bs.getDrawGraphics();
-			graphics.clearRect(0, 0, 800, 600);
-			
-			//window.createB
-			for(GameObject object : objects){
-				if(object.isVisible()) object.draw(graphics);
-			}
-			
-			bs.show();
-			graphics.dispose();
-			
-			//put in some kind of wait ?
+			//rendering
+			graphicsManager.renderObjects(objects);
 			
 			previous = current;
 		}
@@ -161,6 +146,11 @@ public class GameManager {
 		events.add(event);
 	}
 	
+	public void deregisterEvent(AutomaticGameEvent event){
+		events.remove(event);
+		
+	}
+	
 	public void registerInputListener(GameInput listener){
 		inputListeners.add(listener);
 	}
@@ -171,26 +161,9 @@ public class GameManager {
 	 * @param object1 The game object to check for, must be collidable. 
 	 */
 	public void collisionCheck(GameObject object1){
-		if(!object1.collidable) return;
-		/*Point pos1 = object1.getPosition();
-		Dimension dim1 = object1.getSize();
-		Rectangle rect1 = new Rectangle(pos1.x, pos1.y, dim1.width, dim1.height);
-		Point pos2;
-		Dimension dim2;
-		Rectangle rect2;
+		if(!object1.isCollidable()) return;
 		for(GameObject object2 : objects){
-			if(object2 != object1 && object2.collidable){
-				pos2 = object2.getPosition();
-				dim2 = object2.getSize();
-				rect2 = new Rectangle(pos2.x, pos2.y, dim2.width, dim2.height);
-				if(rect1.intersects(rect2)){
-					object1.onCollision(object2);
-					object2.onCollision(object1);
-				}
-			}
-		}*/
-		for(GameObject object2 : objects){
-			if(object2 != object1 && object2.collidable)
+			if(object2 != object1 && object2.isCollidable())
 				collisionManager.collisionCheck(object1, object2);
 		}
 	}
@@ -201,6 +174,14 @@ public class GameManager {
 	
 	public CollisionManager getCollisionManager(){
 		return collisionManager;
+	}
+	
+	public void setGraphicsManager(GraphicsManager graphicsManager){
+		this.graphicsManager = graphicsManager;
+	}
+	
+	public GraphicsManager getGraphicsManager(){
+		return graphicsManager;
 	}
 	
 	//a lot of work to be done here
@@ -220,7 +201,7 @@ public class GameManager {
 	
 	private class ObjectComparator implements Comparator<GameObject>{
 		public int compare(GameObject arg0, GameObject arg1) {
-			return arg0.layer - arg1.layer;
+			return arg0.getLayer() - arg1.getLayer();
 		}
 		
 	}

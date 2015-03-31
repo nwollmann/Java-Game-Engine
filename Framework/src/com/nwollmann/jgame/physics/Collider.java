@@ -3,7 +3,7 @@ package com.nwollmann.jgame.physics;
 import java.awt.Dimension;
 import java.awt.Point;
 
-import com.nwollmann.jgame.GameObject;
+import com.nwollmann.jgame.util.GameObject;
 
 public class Collider {
 	protected boolean positionBound;

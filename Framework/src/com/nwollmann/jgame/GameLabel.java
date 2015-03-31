@@ -4,6 +4,7 @@ package com.nwollmann.jgame;
 import java.awt.Graphics2D;
 
 import com.nwollmann.jgame.graphics.TextRenderer;
+import com.nwollmann.jgame.util.GameObject;
 
 /**
  * Displays text on the screen. 

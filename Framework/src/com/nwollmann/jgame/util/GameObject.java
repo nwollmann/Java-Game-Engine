@@ -1,4 +1,4 @@
-package com.nwollmann.jgame;
+package com.nwollmann.jgame.util;
 
 import java.awt.Dimension;
 import java.awt.Graphics2D;

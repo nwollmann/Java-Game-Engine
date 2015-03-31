@@ -5,8 +5,21 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics2D;
 
+/**
+ * Renders the given string at the given location, drawing a box behind it.
+ * @author Nicholas Wollmann
+ *
+ */
 public class TextRenderer implements GameRenderer{
-
+	
+	/**
+	 * Draws the text at the given location.
+	 * @param x Left bound (minimum x)
+	 * @param y Upper bound (minimum y)
+	 * @param size Dimensions of the box
+	 * @param string Text to display
+	 * @param graphics The graphics object of the window
+	 */
 	public void renderText(int x, int y, Dimension size, String string, Graphics2D graphics){
 		graphics.setColor(Color.GRAY);
 		graphics.fillRect(x, y, size.width, size.height);

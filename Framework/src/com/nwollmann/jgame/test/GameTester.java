@@ -1,10 +1,12 @@
-package com.nwollmann.jgame;
+package com.nwollmann.jgame.test;
 
 import java.awt.Dimension;
 
+import com.nwollmann.jgame.GameManager;
 import com.nwollmann.jgame.physics.CircularCollider;
 import com.nwollmann.jgame.physics.CollisionManager;
 import com.nwollmann.jgame.physics.RectangularCollider;
+import com.nwollmann.jgame.util.GameObject;
 
 public class GameTester {
 	public static final int BASIC_COLLISION_MANAGER_TEST = 1;

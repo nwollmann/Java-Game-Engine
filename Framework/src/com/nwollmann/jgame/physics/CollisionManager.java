@@ -1,8 +1,8 @@
 package com.nwollmann.jgame.physics;
 
 import com.nwollmann.jgame.GameManager;
-import com.nwollmann.jgame.GameObject;
 import com.nwollmann.jgame.exceptions.CollisionException;
+import com.nwollmann.jgame.util.GameObject;
 
 public class CollisionManager {
 	

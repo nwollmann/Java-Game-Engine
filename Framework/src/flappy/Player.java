@@ -1,6 +1,6 @@
 package flappy;
 import com.nwollmann.jgame.GameManager;
-import com.nwollmann.jgame.GameObject;
+import com.nwollmann.jgame.util.GameObject;
 public class Player extends GameObject{
 	private static Player instance;
 	
