@@ -62,7 +62,7 @@ public class CardRenderer extends ImageRenderer{
 	@Override
 	public void render(int x, int y, Dimension size, Graphics2D graphics){
 		graphics.setColor(Color.black);
-		graphics.fillRect(x, y, size.width, size.height);
+		graphics.fillRoundRect(x, y, size.width, size.height, 8, 8);
 		if(showBack){
 			graphics.setColor(Color.red);
 			graphics.fillRect(x + 1, y + 1, size.width - 2, size.height - 2);
