@@ -117,6 +117,14 @@ public class GameManager {
 		}
 	}
 	
+	public void setUpdateDelay(int delay){
+		updateDelay = delay;
+	}
+	
+	public int getUpdateDelay(){
+		return updateDelay;
+	}
+	
 	/**
 	 * A LOT OF WORK TO DO HERE.	
 	 * Should end up being *only* update calls for all objects and checking

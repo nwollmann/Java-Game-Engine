@@ -29,6 +29,7 @@ public class GameWindow extends JFrame{
 		this.setSize(800, 600);
 		this.setVisible(true);
 		this.setIgnoreRepaint(true);
+		this.setResizable(false);
 		listener = new KeyLis();
 		this.addKeyListener(listener);
 		createBufferStrategy(2);

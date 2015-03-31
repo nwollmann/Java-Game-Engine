@@ -1,12 +1,11 @@
 package flappy;
-import java.awt.Color;
 import java.awt.Dimension;
 
 import javax.swing.JOptionPane;
 
 import com.nwollmann.jgame.GameLabel;
 import com.nwollmann.jgame.GameManager;
-import com.nwollmann.jgame.graphics.ColorRenderer;
+import com.nwollmann.jgame.graphics.CardRenderer;
 public class Main {
 	
 	public static GameLabel label;
@@ -15,7 +14,9 @@ public class Main {
 		GameManager gm = GameManager.getInstance();
 		Player player = new Player();
 		player.setVisible(true);
-		player.setRenderer(new ColorRenderer(Color.red));
+		//player.setRenderer(new ColorRenderer(Color.red));
+		//player.setRenderer(new ImageRenderer("src/assets/cards/10_of_clubs.png"));
+		player.setRenderer(new CardRenderer(3, "spades"));
 		player.setPosition(100, 100);
 		player.setSize(new Dimension(50, 50));
 		player.setCollidable(true);
