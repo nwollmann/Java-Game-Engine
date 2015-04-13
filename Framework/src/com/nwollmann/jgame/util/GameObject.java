@@ -6,6 +6,7 @@ import java.awt.Point;
 
 import com.nwollmann.jgame.graphics.GameRenderer;
 import com.nwollmann.jgame.physics.Collider;
+import com.nwollmann.jgame.physics.RectangularCollider;
 
 /**
  * This is the base class for all objects registered with the Game Manager.
@@ -33,7 +34,7 @@ public class GameObject {
 		collidable = false;
 		visible = false;
 		size = new Dimension(100, 100);
-		collider = new Collider();
+		collider = new RectangularCollider();
 		collider.setParent(this);
 	}
 	

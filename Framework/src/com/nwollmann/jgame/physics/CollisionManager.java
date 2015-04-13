@@ -31,6 +31,8 @@ public class CollisionManager {
 	public boolean collisionCheck(RectangularCollider rect1, RectangularCollider rect2){
 		if(GameManager.getInstance().isDebug()) System.out.println("Using default rectangular collision.");
 		if(rect1.getBounds().intersects(rect2.getBounds())){
+			System.out.println("Rect1: " + rect1.getBounds());
+			System.out.println("Rect2: " + rect2.getBounds());
 			return true;
 		}
 		return false;
@@ -49,8 +51,8 @@ public class CollisionManager {
 	
 	public boolean collisionCheck(RectangularCollider rect, CircularCollider circle){
 		if(GameManager.getInstance().isDebug()) System.out.println("Using default hybrid collision.");
-		int rectX = (rect.getPositionX() >= circle.getPositionX()) ? rect.getPositionX() - rect.getWidth()/2 : rect.getPositionX() + rect.getWidth()/2;
-		int rectY = (rect.getPositionY() >= circle.getPositionY()) ? rect.getPositionY() - rect.getHeight()/2 : rect.getPositionY() + rect.getHeight()/2;
+		//int rectX = (rect.getPositionX() >= circle.getPositionX()) ? rect.getPositionX() - rect.getWidth()/2 : rect.getPositionX() + rect.getWidth()/2;
+		//int rectY = (rect.getPositionY() >= circle.getPositionY()) ? rect.getPositionY() - rect.getHeight()/2 : rect.getPositionY() + rect.getHeight()/2;
 		//if(circle.getPosition().distance(new Point(rectX, rectY)) <= circle.radius)
 		return false;
 	}

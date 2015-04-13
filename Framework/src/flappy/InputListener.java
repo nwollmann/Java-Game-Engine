@@ -5,7 +5,8 @@ public class InputListener implements GameInput{
 	@Override
 	public void keyPressed(int keyID){
 		if(keyID == 32)
-			Player.getInstance().translateY(-50);
+			Player.getInstance().velocity = -10;
+			//Player.getInstance().translateY(-50);
 		else if(keyID == 37)
 			GameManager.getInstance().getGraphicsManager().translate(20, 0);
 		else if(keyID == 39)

@@ -5,6 +5,7 @@ public class Player extends GameObject{
 	private static Player instance;
 	
 	private double score;
+	public int velocity;
 	
 	public Player(){
 		super();
@@ -27,6 +28,7 @@ public class Player extends GameObject{
 	@Override
 	public void update(){
 		if(this.getPosition().y >= 550) GameManager.getInstance().haltGame();
-		this.translateY(3);
+		if(velocity < 5) velocity++;
+		this.translateY(velocity);
 	}
 }

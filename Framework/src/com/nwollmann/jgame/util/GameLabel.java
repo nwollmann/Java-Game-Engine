@@ -1,10 +1,9 @@
 
-package com.nwollmann.jgame;
+package com.nwollmann.jgame.util;
 
 import java.awt.Graphics2D;
 
 import com.nwollmann.jgame.graphics.TextRenderer;
-import com.nwollmann.jgame.util.GameObject;
 
 /**
  * Displays text on the screen. 

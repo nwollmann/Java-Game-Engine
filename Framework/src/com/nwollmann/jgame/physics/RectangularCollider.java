@@ -90,7 +90,7 @@ public class RectangularCollider extends Collider{
 	}
 	
 	public Rectangle getBounds(){
-		return new Rectangle(position.x - size.width/2, position.y - size.height/2, size.width, size.height);
+		return new Rectangle(position.x, position.y, size.width, size.height);
 	}
 	
 	@Override

@@ -137,6 +137,10 @@ public class GameManager {
 			object.update();
 			if(object.isFlaggedForDeletion()) it.remove();
 		}
+		
+		for(GameObject object : objects){
+			if(object.isFlaggedForCollision()) this.collisionCheck(object);
+		}
 	}
 	
 	/**
