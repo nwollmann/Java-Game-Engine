@@ -1,10 +1,18 @@
-	package flappy;
+package flappy;
 import java.awt.Color;
 
 import com.nwollmann.jgame.GameManager;
 import com.nwollmann.jgame.graphics.ColorRenderer;
 import com.nwollmann.jgame.util.GameObject;
 public class Obstacle extends GameObject{
+	
+	public Obstacle(){
+		super();
+		this.setCollidable(true);
+		this.setRenderer(new ColorRenderer(Color.green));
+		this.setVisible(true);
+	}
+	
 	@Override
 	public void update(){
 		//move it left
@@ -15,10 +23,10 @@ public class Obstacle extends GameObject{
 		}
 		
 		//iff offscreen delete it and give the player a point
-		if(this.getPosition().x + this.getSize().width <= 0){
+		/*if(this.getPosition().x + this.getSize().width <= 0){
 			//Player.getInstance().adjustScore(0.5);
 			this.flagForDeletion();
-		}
+		}*/
 		
 		
 	}

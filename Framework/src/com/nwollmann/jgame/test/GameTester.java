@@ -8,9 +8,18 @@ import com.nwollmann.jgame.physics.CollisionManager;
 import com.nwollmann.jgame.physics.RectangularCollider;
 import com.nwollmann.jgame.util.GameObject;
 
+/**
+ * Provides various tests which can be run to ensure that the components of the game engine
+ * are working as intended.
+ * @author Nicholas Wollmann
+ *
+ */
 public class GameTester {
 	public static final int BASIC_COLLISION_MANAGER_TEST = 1;
 	
+	/**
+	 * Runs the test corresponding to the provided test id.
+	 */
 	public static boolean test(int testType){
 		GameManager.getInstance().setDebug(true);
 		boolean result = false;

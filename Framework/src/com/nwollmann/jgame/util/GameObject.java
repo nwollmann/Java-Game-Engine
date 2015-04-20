@@ -261,6 +261,9 @@ public class GameObject {
 		
 	}
 	
+	/**
+	 * Sets the collider of this game object.
+	 */
 	public void setCollider(Collider collider){
 		if(collider.isPositionBound()){
 			collider.setPosition(getPosition(), true);
@@ -270,18 +273,24 @@ public class GameObject {
 		this.collider = collider;
 	}
 	
+	/**
+	 * Returns the collider of this game object.
+	 */
 	public Collider getCollider(){
 		return collider;
 	}
 	
 	/**
-	 * 
-	 * @param object
+	 * Code to be called when this game object collides with another.
+	 * @param object The other object involved in the collision.
 	 */
 	public void onCollision(GameObject object){
 		//implement on a subclass basis, may end up having a parameter for the other object in the collision [probably should]
 	}
 	
+	/**
+	 * Code to run on every update cycle in the game engine (default of 15 miliseconds).
+	 */
 	public void update(){
 		//not sure yet if this will be called every frame or if there will be an ability to set # of frames between calls.
 	}

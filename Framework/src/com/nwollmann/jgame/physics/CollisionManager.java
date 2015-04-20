@@ -4,8 +4,17 @@ import com.nwollmann.jgame.GameManager;
 import com.nwollmann.jgame.exceptions.CollisionException;
 import com.nwollmann.jgame.util.GameObject;
 
+/**
+ * The default CollisionManager for the game engine, used to detect
+ * whether two Collider objects are in collision.
+ * @author Nicholas Wollmann
+ *
+ */
 public class CollisionManager {
 	
+	/**
+	 * Checks whether the provided two game objects are colliding.
+	 */
 	public boolean collisionCheck(GameObject object1, GameObject object2) throws CollisionException{
 		boolean collisionDetected;
 		if(object1.getCollider() instanceof RectangularCollider){
@@ -28,6 +37,9 @@ public class CollisionManager {
 		return collisionDetected;
 	}
 	
+	/**
+	 * Checks whether the given RectangularColliders are colliding.
+	 */
 	public boolean collisionCheck(RectangularCollider rect1, RectangularCollider rect2){
 		if(GameManager.getInstance().isDebug()) System.out.println("Using default rectangular collision.");
 		if(rect1.getBounds().intersects(rect2.getBounds())){
@@ -38,6 +50,9 @@ public class CollisionManager {
 		return false;
 	}
 	
+	/**
+	 * Checks whether the given CircularColliders are colliding.
+	 */
 	public boolean collisionCheck(CircularCollider circle1, CircularCollider circle2){
 		if(GameManager.getInstance().isDebug()) System.out.println("Using default circular collision.");
 		if(circle1.getPosition().distance(circle2.getPosition()) <= circle1.getRadius() + circle2.getRadius()){
@@ -49,6 +64,9 @@ public class CollisionManager {
 		}
 	}
 	
+	/**
+	 * Checks whether the given rectangular and circular colliders are colliding.
+	 */
 	public boolean collisionCheck(RectangularCollider rect, CircularCollider circle){
 		if(GameManager.getInstance().isDebug()) System.out.println("Using default hybrid collision.");
 		//int rectX = (rect.getPositionX() >= circle.getPositionX()) ? rect.getPositionX() - rect.getWidth()/2 : rect.getPositionX() + rect.getWidth()/2;

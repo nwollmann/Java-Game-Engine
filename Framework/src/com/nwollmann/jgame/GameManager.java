@@ -54,34 +54,49 @@ public class GameManager {
 		return instance;
 	}
 	
+	/**
+	 * Sets whether the engine is in debug mode.
+	 */
 	public void setDebug(boolean debug){
 		debugMode = debug;
 		if(debug) System.out.println("Engine is now in debug mode");
 		else System.out.println("Engine is no longer in debug mode");
 	}
 	
+	/**
+	 * Returns whether the engine is currently in debug mode.
+	 */
 	public boolean isDebug(){
 		return debugMode;
 	}
 	
 	/**
-	 * Starts the game loop.
+	 * Runs the game in a new thread.
 	 */
 	public void runGame(){
 		thread = new GameThread();
 		thread.start();
 	}
 	
+	/**
+	 * Stops the game after the current iteration of the game loop.
+	 */
 	public void haltGame(){
 		gameRunning = false;
 	}
 	
+	/**
+	 * Report a key press that has been detected.
+	 */
 	public void registerKeyPressed(int keyID){
 		for(GameInput listener : inputListeners){
 			listener.keyPressed(keyID);
 		}
 	}
 	
+	/**
+	 * The main loop of the game, which will continue running until after haltGame is called.
+	 */
 	public void gameLoop(){
 		
 		gameRunning = true;
@@ -117,18 +132,22 @@ public class GameManager {
 		}
 	}
 	
+	/**
+	 * Sets the delay between calls to the update method of game objects.
+	 */
 	public void setUpdateDelay(int delay){
 		updateDelay = delay;
 	}
 	
+	/**
+	 * Returns the delay between calls to the update method of game objects.
+	 */
 	public int getUpdateDelay(){
 		return updateDelay;
 	}
 	
 	/**
-	 * A LOT OF WORK TO DO HERE.	
-	 * Should end up being *only* update calls for all objects and checking
-	 * for deletion flags
+	 * A single update iteration for the game engine.
 	 */
 	private void update(){
 		Iterator<GameObject> it = objects.iterator();
@@ -153,16 +172,25 @@ public class GameManager {
 		objects.sort(new ObjectComparator());
 	}
 	
+	/**
+	 * Registers an event to be called by the engine on delay.
+	 */
 	public void registerEvent(AutomaticGameEvent event){
 		event.setNextExecute(System.currentTimeMillis() + event.getDelay());
 		events.add(event);
 	}
 	
+	/**
+	 * Remove an event from the game engine.
+	 */
 	public void deregisterEvent(AutomaticGameEvent event){
 		events.remove(event);
 		
 	}
 	
+	/**
+	 * Register a Listener to be passed any input registered by the game engine.
+	 */
 	public void registerInputListener(GameInput listener){
 		inputListeners.add(listener);
 	}
@@ -180,18 +208,30 @@ public class GameManager {
 		}
 	}
 	
+	/**
+	 * Sets the collision manager to be used by the game engine.
+	 */
 	public void setCollisionManager(CollisionManager collisionManager){
 		this.collisionManager = collisionManager;
 	}
 	
+	/**
+	 * Returns the collision manager used by the game engine.
+	 */
 	public CollisionManager getCollisionManager(){
 		return collisionManager;
 	}
 	
+	/**
+	 * Sets the grpahics manager used by the game engine.
+	 */
 	public void setGraphicsManager(GraphicsManager graphicsManager){
 		this.graphicsManager = graphicsManager;
 	}
 	
+	/**
+	 * Returns the graphics manager being used by the game engine.
+	 */
 	public GraphicsManager getGraphicsManager(){
 		return graphicsManager;
 	}

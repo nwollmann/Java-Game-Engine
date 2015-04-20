@@ -4,14 +4,25 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
 
+/**
+ * Renders a card of the given value and suit using stock images found in the engine assets.
+ * @author Nicholas Wollmann
+ *
+ */
 public class CardRenderer extends ImageRenderer{
 	
 	boolean showBack;
 
+	/**
+	 * Constructs a CardRenderer for the given card.
+	 */
 	public CardRenderer(String card) {
 		super("src/assets/cards/" + card);
 	}
 	
+	/**
+	 * Constructs a CardRenderer for the given value and suit.
+	 */
 	public CardRenderer(int value, String suit){
 		String card = "";
 		switch(value){
@@ -35,6 +46,9 @@ public class CardRenderer extends ImageRenderer{
 		this.loadImage("src/assets/cards/" + card + ".png");
 	}
 	
+	/**
+	 * Constructs a CardRenderer for the given value and suit then sets whether it is showing the back or face of the card.
+	 */
 	public CardRenderer(int value, String suit, boolean showBack){
 		this.showBack = showBack;
 		String card = "";

@@ -9,6 +9,9 @@ public class CollisionException extends GameException{
 	
 	private static final long serialVersionUID = -89887972563202679L;
 
+	/**
+	 * Constructs a CollisionException with the given message.
+	 */
 	public CollisionException(String message) {
 		super(message);
 	}

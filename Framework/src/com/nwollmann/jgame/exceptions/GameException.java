@@ -9,6 +9,9 @@ public class GameException extends RuntimeException{
 	
 	private static final long serialVersionUID = 7273805110314484922L;
 
+	/**
+	 * Constructs a new GameException with the given message.
+	 */
 	public GameException(String message){
 		super(message); 
 	}
